@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D m_rb2d;
     public Material[] m_RoomMaterials;
     public ListofList m_RoomWalls = new ListofList();
+    private List<int> m_listIntList = new List<int>();
+    private List<int> m_wallIntList = new List<int>();
 
     #region "List of list"
     [Serializable]
@@ -36,15 +38,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         m_rb2d = GetComponent<Rigidbody2D>();
-        // for (int i = 0; i < m_RoomMaterials.Length; i++)
-        // {
-        //     m_RoomMaterials[i] = GetComponent<Material>();
-        // }
     }
     void FixedUpdate()
     {
         // LookAtMouse();
-
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
@@ -91,10 +88,26 @@ public class PlayerController : MonoBehaviour
                             m_RoomMaterials[i].color = Color.white;
                             if (i - 1 >= 0)
                             {
-                                int dsad = m_RoomWalls.list[i--].gameObject.Count;
-                                for (int j = 0; j < m_RoomWalls.list[i--].gameObject.Count; j++)
+                                for (int j = 0; j < m_RoomWalls.list[i - 1].gameObject.Count; j++)
                                 {
-                                    m_RoomWalls.list[i].gameObject[j].SetActive(false);
+                                    //m_RoomWalls.list[i - 1].gameObject[j].SetActive(false);
+                                    Wall(i - 1, false);
+                                    m_listIntList.Add(i - 1);
+                                    m_wallIntList.Add(j);
+                                }
+                            }
+                            else
+                            {
+                                for (int k = 0; k < m_RoomWalls.list.Count; k++)
+                                {
+                                    if (m_listIntList != null && m_wallIntList != null)
+                                    {
+                                        for (int l = 0; l < m_listIntList.Count; l++)
+                                            Wall(m_listIntList[l], m_wallIntList[l], true);
+                                        //m_RoomWalls.list[m_listIntList[l]].gameObject[m_wallIntList[l]].SetActive(true);
+                                        m_listIntList.Clear();
+                                        m_wallIntList.Clear();
+                                    }
                                 }
                             }
                             continue;
@@ -102,11 +115,24 @@ public class PlayerController : MonoBehaviour
                         m_RoomMaterials[i].color = Color.grey;
                     }
                 }
-                Debug.Log(raycastHit.collider.tag);
             }
         }
         else
             return;
         // 7E7E7E
+    }
+    public void Wall(int _list, bool _setactive)
+    {
+        for (int j = 0; j < m_RoomWalls.list[_list].gameObject.Count; j++)
+        {
+            m_RoomWalls.list[_list].gameObject[j].SetActive(_setactive);
+        }
+    }
+    public void Wall(int _list, int _go, bool _setactive)
+    {
+        for (int j = 0; j < m_listIntList.Count; j++)
+        {
+            m_RoomWalls.list[_list].gameObject[_go].SetActive(_setactive);
+        }
     }
 }
