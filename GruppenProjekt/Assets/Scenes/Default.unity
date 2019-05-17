@@ -269,9 +269,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1350859238503277710, guid: 1a7f97434b1c2fc4eaa217ea8d1f0ac5,
         type: 3}
+      propertyPath: m_WallMaterials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350859238503277710, guid: 1a7f97434b1c2fc4eaa217ea8d1f0ac5,
+        type: 3}
       propertyPath: m_RoomWalls.list.Array.data[0].gameObject.Array.data[0]
       value: 
       objectReference: {fileID: 370014119}
+    - target: {fileID: 1350859238503277710, guid: 1a7f97434b1c2fc4eaa217ea8d1f0ac5,
+        type: 3}
+      propertyPath: m_WallMaterials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 118605c84431db6499c82f9116bad6f7, type: 2}
+    - target: {fileID: 1350859238503277710, guid: 1a7f97434b1c2fc4eaa217ea8d1f0ac5,
+        type: 3}
+      propertyPath: m_WallMaterials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ee7c17912112ba3498c86a7a4013e9de, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a7f97434b1c2fc4eaa217ea8d1f0ac5, type: 3}
 --- !u!1001 &4241682458278099011
@@ -518,6 +533,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 118605c84431db6499c82f9116bad6f7, type: 2}
+      objectReference: {fileID: 2100000, guid: ee7c17912112ba3498c86a7a4013e9de, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 215b2832df1847944a63985c830ae78c, type: 3}
