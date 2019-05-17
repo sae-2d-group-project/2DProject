@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 m_movement = Vector3.zero;
     private Rigidbody2D m_rb2d;
     public Material[] m_RoomMaterials;
+    public Material[] m_WallMaterials;
     public ListofList m_RoomWalls = new ListofList();
     private List<int> m_listIntList = new List<int>();
     private List<int> m_wallIntList = new List<int>();
@@ -125,14 +127,24 @@ public class PlayerController : MonoBehaviour
     {
         for (int j = 0; j < m_RoomWalls.list[_list].gameObject.Count; j++)
         {
-            m_RoomWalls.list[_list].gameObject[j].SetActive(_setactive);
+            if (_setactive == false)
+                m_RoomWalls.list[_list].gameObject[j].GetComponent<TilemapRenderer>().material = m_WallMaterials[1];
+            //m_RoomWalls.list[_list].gameObject[j].SetActive(_setactive);
+            else
+            {
+                m_RoomWalls.list[_list].gameObject[j].GetComponent<TilemapRenderer>().material = m_WallMaterials[0];
+            }
         }
     }
     public void Wall(int _list, int _go, bool _setactive)
     {
         for (int j = 0; j < m_listIntList.Count; j++)
         {
-            m_RoomWalls.list[_list].gameObject[_go].SetActive(_setactive);
+            if (_setactive == true)
+                m_RoomWalls.list[_list].gameObject[_go].GetComponent<TilemapRenderer>().material = m_WallMaterials[0];
+            else
+                m_RoomWalls.list[_list].gameObject[_go].GetComponent<TilemapRenderer>().material = m_WallMaterials[1];
+            // m_RoomWalls.list[_list].gameObject[_go].SetActive(_setactive);
         }
     }
 }
