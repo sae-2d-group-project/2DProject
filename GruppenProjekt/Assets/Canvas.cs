@@ -14,6 +14,22 @@ public class Canvas : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Health();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        for (int i = 0; i < m_healths.Length; i++)
+        {
+            if (i < pCtrl.m_Health)
+                m_healths[i].GetComponent<Image>().sprite = m_redLife;
+            else
+                m_healths[i].GetComponent<Image>().sprite = m_blackLife;
+        }
+    }
+    void Health()
+    {
         m_healths = new GameObject[pCtrl.m_Health];
         for (int i = 0; i < m_healths.Length; i++)
         {
@@ -34,18 +50,6 @@ public class Canvas : MonoBehaviour
                 m_healths[i].GetComponent<Image>().sprite = m_redLife;
                 m_healths[i].transform.position = m_healths[i - 1].transform.position + new Vector3(100, 0, 0);
             }
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        for (int i = 0; i < m_healths.Length; i++)
-        {
-            if (i < pCtrl.m_Health)
-                m_healths[i].GetComponent<Image>().sprite = m_redLife;
-            else
-                m_healths[i].GetComponent<Image>().sprite = m_blackLife;
         }
     }
 }
