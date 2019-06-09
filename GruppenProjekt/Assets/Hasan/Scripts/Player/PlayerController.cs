@@ -26,6 +26,7 @@ public class PlayerController : Actor, IInitializes, IHasFaction, ITakesDamage
     public float m_Speed = 10.0f;
     private float m_currentRecoil = 0f;
     private float m_randomRecoil = 0f;
+    public int m_Health = 5;
     #endregion
 
     #region PROPERTIES------------------------------------------------------------------------------------------------------------------------------------PROPERTIES
