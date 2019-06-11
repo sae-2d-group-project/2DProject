@@ -24,8 +24,8 @@ public class PlayerController : Actor, IInitializes, IHasFaction, ITakesDamage
     private ESelectedWeapon m_selected = 0;
     public float m_Speed = 10.0f;
     private float m_currentRecoil = 0f;
-    private float m_randomRecoil = 0f;
     public int m_Health = 5;
+    private KeyBinds keyBinds;
     #endregion
 
     #region PROPERTIES------------------------------------------------------------------------------------------------------------------------------------PROPERTIES
@@ -80,6 +80,11 @@ public class PlayerController : Actor, IInitializes, IHasFaction, ITakesDamage
 
         m_Primary.SetWeapon(this);// TMP
         Initialized = true;
+        keyBinds = FindObjectOfType<KeyBinds>();
+        for (int i = 0; i < keyBinds.m_Keys.Count; i++)
+        {
+            Debug.Log(keyBinds.m_Keys[i]);
+        }
     }
     void FixedUpdate()
     {

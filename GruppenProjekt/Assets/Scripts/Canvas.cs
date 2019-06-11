@@ -1,5 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//------------------------------------------//
+//		script by:			Hasan Sahin 	//
+//		date of creation:	06.06.2019		//
+//		last time edited:	10.06.2019		//
+//------------------------------------------//
+//notes:
+//
 using UnityEngine;
 using UnityEngine.UI;
 

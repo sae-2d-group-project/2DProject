@@ -1,0 +1,8 @@
+Forwards  - W
+Backwards - S
+Right     - D
+Left	  - A
+Shoot	  - Fire1
+Melee	  - Alpha1
+Secondary - Alpha2
+Primary   - Alpha3

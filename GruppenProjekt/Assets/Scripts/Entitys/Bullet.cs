@@ -1,14 +1,10 @@
 ﻿//------------------------------------------//
-//		script by:			gregor hempel	//
-//		date of creation:	31.05.2019		//
-//		last time edited:	02.06.2019		//
-//		times edited:		2				//
+//		script by:			Hasan Sahin 	//
+//		date of creation:	10.06.2019		//
+//		last time edited:	10.06.2019		//
 //------------------------------------------//
 //notes:
 //
-
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : Entity, IInitializes
