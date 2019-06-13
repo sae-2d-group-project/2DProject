@@ -57,10 +57,7 @@
      <Compile Include="Assets\Hasan\Scripts\SimpleCameraController.cs" />
      <Compile Include="Assets\KeyBinds.cs" />
      <Compile Include="Assets\MainMenu.cs" />
-<<<<<<< HEAD
-=======
      <Compile Include="Assets\PerkMachine.cs" />
->>>>>>> master
      <Compile Include="Assets\Scripts\Canvas.cs" />
      <Compile Include="Assets\Scripts\Entitys\Actor.cs" />
      <Compile Include="Assets\Scripts\Entitys\Actors\Player2.cs" />

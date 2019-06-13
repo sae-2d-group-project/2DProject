@@ -5,11 +5,8 @@
 //------------------------------------------//
 //notes:
 //
-<<<<<<< HEAD:GruppenProjekt/Assets/Scripts/Canvas.cs
-=======
 using System;
 using TMPro;
->>>>>>> master:GruppenProjekt/Assets/Scripts/Canvas.cs
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,10 +30,7 @@ public class Canvas : MonoBehaviour
     void Start()
     {
         Health();
-<<<<<<< HEAD:GruppenProjekt/Assets/Scripts/Canvas.cs
-=======
         m_kInt = FindObjectOfType<KeyBinds>().GetComponent<KeyBinds>().m_Keys[8];
->>>>>>> master:GruppenProjekt/Assets/Scripts/Canvas.cs
     }
 
     // Update is called once per frame
@@ -44,21 +38,11 @@ public class Canvas : MonoBehaviour
     {
         for (int i = 0; i < m_healths.Length; i++)
         {
-<<<<<<< HEAD:GruppenProjekt/Assets/Scripts/Canvas.cs
-            if (i < pCtrl.m_Health)
-=======
             if (i < PlayerController.m_Health)
->>>>>>> master:GruppenProjekt/Assets/Scripts/Canvas.cs
                 m_healths[i].GetComponent<Image>().sprite = m_redLife;
             else
                 m_healths[i].GetComponent<Image>().sprite = m_blackLife;
         }
-<<<<<<< HEAD:GruppenProjekt/Assets/Scripts/Canvas.cs
-    }
-    void Health()
-    {
-        m_healths = new GameObject[pCtrl.m_Health];
-=======
         if (m_interactable)
         {
             m_Interactable.SetActive(true);
@@ -70,7 +54,6 @@ public class Canvas : MonoBehaviour
     void Health()
     {
         m_healths = new GameObject[PlayerController.m_Health];
->>>>>>> master:GruppenProjekt/Assets/Scripts/Canvas.cs
         for (int i = 0; i < m_healths.Length; i++)
         {
             if (i == 0)
