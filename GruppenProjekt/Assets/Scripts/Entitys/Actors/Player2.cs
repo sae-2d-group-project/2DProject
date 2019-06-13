@@ -21,8 +21,6 @@ public class Player2 : Actor, IInitializes, IHasFaction, ITakesDamage
 
     private float m_currentRecoil = 0f;
 
-    private float m_randomRecoil = 0f;
-
     #endregion
 
     #region PROPERTIES------------------------------------------------------------------------------------------------------------------------------------PROPERTIES

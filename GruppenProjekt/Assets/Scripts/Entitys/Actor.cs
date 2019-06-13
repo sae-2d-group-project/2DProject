@@ -43,7 +43,7 @@ public class Actor : Vulnerable, IInitializes, IHasFaction, ITakesDamage
             m_RotationAnchor = new GameObject("RotationAnchor");
 
         m_RotationAnchor.transform.SetParent(transform);
-        m_RotationAnchor.transform.position = Vector3.zero;
+        m_RotationAnchor.transform.position = new Vector3(0,0,0);
         m_RotationAnchor.transform.rotation = Quaternion.identity;
 
         if (m_GunMuzzle == null)

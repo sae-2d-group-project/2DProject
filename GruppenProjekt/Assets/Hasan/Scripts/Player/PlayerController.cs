@@ -16,7 +16,7 @@ public class PlayerController : Actor, IInitializes, IHasFaction, ITakesDamage
 {
     #region VARIABLES--------------------------------------------------------------------------------------------------------------------------------------VARIABLES
     private Vector3 m_movement = Vector3.zero;
-    private Rigidbody2D m_rb2d;
+    private KeyBinds keyBinds;
     public Material[] m_RoomMaterials;
     public Material[] m_WallMaterials;
     public ListofList m_RoomWalls = new ListofList();
@@ -25,8 +25,8 @@ public class PlayerController : Actor, IInitializes, IHasFaction, ITakesDamage
     private ESelectedWeapon m_selected = 0;
     public float m_Speed = 10.0f;
     private float m_currentRecoil = 0f;
-    private float m_randomRecoil = 0f;
-    public int m_Health = 5;
+    public static int m_Health = 5;
+    public static float m_PerkTimer = 3f;
     #endregion
 
     #region PROPERTIES------------------------------------------------------------------------------------------------------------------------------------PROPERTIES
@@ -68,10 +68,24 @@ public class PlayerController : Actor, IInitializes, IHasFaction, ITakesDamage
         public List<GameObjectList> list;
     }
     #endregion
-
-    void Start()
+    public override void Init()
     {
-        m_rb2d = GetComponent<Rigidbody2D>();
+        base.Init();
+
+        // SET FACTIONS
+        m_Faction = 0;// clear
+        SetFlags(ref m_Faction, EFaction.Friendly, EFaction.Human);// set
+        // SET TARGETS
+        m_TargetList = 0;// clear
+        SetFlags(ref m_TargetList, EFaction.Hostile);// set
+
+        m_Primary.SetWeapon(this);// TMP
+        Initialized = true;
+        keyBinds = FindObjectOfType<KeyBinds>();
+        for (int i = 0; i < keyBinds.m_Keys.Count; i++)
+        {
+            Debug.Log(keyBinds.m_Keys[i]);
+        }
     }
     void FixedUpdate()
     {
@@ -133,36 +147,11 @@ public class PlayerController : Actor, IInitializes, IHasFaction, ITakesDamage
                     }
                 }
             }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                m_Health--;
+            }
         }
-    }
-    public override void Init()
-    {
-        base.Init();
-
-        // SET FACTIONS
-        m_Faction = 0;// clear
-        SetFlags(ref m_Faction, EFaction.Friendly, EFaction.Human);// set
-        // SET TARGETS
-        m_TargetList = 0;// clear
-        SetFlags(ref m_TargetList, EFaction.Hostile);// set
-
-        m_Primary.SetWeapon(this);// TMP
-
-        Initialized = true;
-    }
-
-    private void LookAtMouse()
-    {
-        //Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);// FIX CAMERA.MAIN
-        //transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
-
-        Vector2 mousePos = Input.mousePosition;
-
-        Vector2 screenPoint = Camera.main.WorldToScreenPoint(transform.localPosition);
-
-        Vector2 offset = new Vector2(mousePos.x - screenPoint.x, mousePos.y - screenPoint.y);
-        var angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     private void Move(float _h, float _v)
@@ -171,8 +160,9 @@ public class PlayerController : Actor, IInitializes, IHasFaction, ITakesDamage
 
         m_movement = m_movement.normalized * m_Speed * Time.deltaTime;
 
-        m_rb2d.MovePosition(transform.position + m_movement);
+        m_rigid2D.MovePosition(transform.position + m_movement);
     }
+
     private void RotateHand()
     {
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -272,6 +262,17 @@ public class PlayerController : Actor, IInitializes, IHasFaction, ITakesDamage
             else
                 m_RoomWalls.list[_list].gameObject[_go].GetComponent<TilemapRenderer>().material = m_WallMaterials[1];
             // m_RoomWalls.list[_list].gameObject[_go].SetActive(_setactive);
+        }
+    }
+    public void GivePlayerPerk(string whichPerk)
+    {
+        if (whichPerk == "health")
+        {
+            m_Health++;
+        }
+        if (whichPerk == "ammo")
+        {
+
         }
     }
 }
