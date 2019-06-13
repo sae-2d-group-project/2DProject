@@ -16,6 +16,10 @@ public class PlayerController : Actor, IInitializes, IHasFaction, ITakesDamage
 {
     #region VARIABLES--------------------------------------------------------------------------------------------------------------------------------------VARIABLES
     private Vector3 m_movement = Vector3.zero;
+<<<<<<< HEAD
+=======
+    private KeyBinds keyBinds;
+>>>>>>> master
     public Material[] m_RoomMaterials;
     public Material[] m_WallMaterials;
     public ListofList m_RoomWalls = new ListofList();
@@ -24,8 +28,13 @@ public class PlayerController : Actor, IInitializes, IHasFaction, ITakesDamage
     private ESelectedWeapon m_selected = 0;
     public float m_Speed = 10.0f;
     private float m_currentRecoil = 0f;
+<<<<<<< HEAD
     public int m_Health = 5;
     private KeyBinds keyBinds;
+=======
+    public static int m_Health = 5;
+    public static float m_PerkTimer = 3f;
+>>>>>>> master
     #endregion
 
     #region PROPERTIES------------------------------------------------------------------------------------------------------------------------------------PROPERTIES
@@ -146,6 +155,10 @@ public class PlayerController : Actor, IInitializes, IHasFaction, ITakesDamage
                     }
                 }
             }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                m_Health--;
+            }
         }
     }
 
@@ -257,6 +270,17 @@ public class PlayerController : Actor, IInitializes, IHasFaction, ITakesDamage
             else
                 m_RoomWalls.list[_list].gameObject[_go].GetComponent<TilemapRenderer>().material = m_WallMaterials[1];
             // m_RoomWalls.list[_list].gameObject[_go].SetActive(_setactive);
+        }
+    }
+    public void GivePlayerPerk(string whichPerk)
+    {
+        if (whichPerk == "health")
+        {
+            m_Health++;
+        }
+        if (whichPerk == "ammo")
+        {
+
         }
     }
 }
